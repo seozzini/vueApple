@@ -3,7 +3,7 @@
   <div v-else-if="1 == 3">안녕하세요2</div>
   <div v-else>안녕하세요3</div> -->
 
-  <ModalModal />
+  <ModalModal :누른거="누른거" :onerooms="onerooms" :modalState="modalState" />
 
   <div class="menu">
     <a v-for="(a, i) in menus" :key="i">{{ a }}</a>
@@ -15,21 +15,14 @@
     <h4>{{ b }}</h4>
     <p>50 만원</p>
 </div> -->
-  <div v-for="(a, i) in onerooms" :key="i">
-    <img :src="a.image" class="room-img" />
-    <h4
-      @click="
-        modalState = true;
-        누른거 = i;
-      "
-    >
-      {{ a.title }}
-    </h4>
-    <p>{{ a.price }}원</p>
-    <button @click="singo[i]++">허위매물신고</button
-    ><span> 신고 수 : {{ singo[i] }}</span>
-  </div>
 
+<RoomCard :oneRoom="onerooms[i]" v-for="(a,i) in onerooms" :key="a"/>
+<!-- <RoomCard :oneRoom="onerooms[1]"/>
+<RoomCard :oneRoom="onerooms[2]"/>
+<RoomCard :oneRoom="onerooms[3]"/>
+<RoomCard :oneRoom="onerooms[4]"/>
+<RoomCard :oneRoom="onerooms[5]"/> -->
+  
   <!-- <div>
     <img :src="onerooms[0].image" class="room-img">
     <h4 @click="modalState = true">{{ onerooms[0].title }}</h4>
@@ -72,7 +65,9 @@
 import oneroomData from './assets/oneroom.js';
 import DisCount from './components/DisCount.vue';
 import ModalModal from './components/ModalModal.vue';
-oneroomData;
+import RoomCard from './components/RoomCard.vue';
+// oneroomData;
+
 
 export default {
   name: 'App',
@@ -95,6 +90,7 @@ export default {
   components: {
     DisCount,
     ModalModal,
+    RoomCard,
   },
 };
 </script>
